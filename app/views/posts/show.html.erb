@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Date:</b>
+  <%= @post.created_at.strftime("%d-%m-%Y") %>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @post.name %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @post.topic %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+<% if @post.attachment_file_name %>
+    <p>
+      <b>Attachments: </b>
+      <%= link_to @post.attachment_file_name, @post.attachment.url %>
+    </p>
+<% end %>
+
+<h2>New Comments:</h2>
+<%= render "comments/form" %>
+
+<h2>Comments</h2>
+<%= render :partial    => "comments/comment",
+           :collection => @post.comments %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
