@@ -1,6 +1,12 @@
 RailsCms::Application.routes.draw do
 
 
+  get "authentication/index"
+
+  get "authentication/create"
+
+  get "authentication/destroy"
+
   resources :posts do
     resources :comments
   end
