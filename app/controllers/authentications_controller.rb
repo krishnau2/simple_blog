@@ -3,10 +3,10 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    omniauth      = request.env["omniauth.auth"]
-    @name         = omniauth['user_info']['name']
-    @uid          = omniauth['uid']
-    provider      = omniauth['provider']
+    auth      = request.env["omniauth.auth"]
+    @name         = auth['user_info']['name']
+    @uid          = auth['uid']
+    provider      = auth['provider']
 
     existing_user = User.find_by_uid(@uid)
     if existing_user

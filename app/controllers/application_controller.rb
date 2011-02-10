@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :facebook.auth.getSession
-  helper_method :facebook.session
+#  before_filter :facebook.auth.getSession
+#  helper_method :facebook.session
 
 #  def fetch_logged_in_user
 #    if facebook.session

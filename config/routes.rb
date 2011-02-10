@@ -1,26 +1,20 @@
 RailsCms::Application.routes.draw do
+  root :to => "home#index"
+  resources :authentications
+  match '/auth/:provider/callback' => 'authentications#create'
 
-
-  get "authentications/index"
-
-  get "authentications/create"
-
-  get "authentications/destroy"
-
-  get "authentication/index"
-
-  get "authentication/create"
-
-  get "authentication/destroy"
+#  get "authentications/index"
+#
+#  get "authentications/create"
+#
+#  get "authentications/destroy"
 
   resources :posts do
     resources :comments
   end
   resources :uploads
 
-  match '/auth/:provider/callback' => 'authentications#create'
-
-  get "home/index"
+#  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -71,7 +65,7 @@ RailsCms::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "home#index"
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'paperclip'
 gem 'devise', '1.1.3'
 gem 'omniauth'
+gem 'nifty-generators', :group => :development
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,3 +34,4 @@ gem 'omniauth'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test
