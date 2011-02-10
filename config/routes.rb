@@ -1,6 +1,12 @@
 RailsCms::Application.routes.draw do
 
 
+  get "authentications/index"
+
+  get "authentications/create"
+
+  get "authentications/destroy"
+
   get "authentication/index"
 
   get "authentication/create"
@@ -11,6 +17,8 @@ RailsCms::Application.routes.draw do
     resources :comments
   end
   resources :uploads
+
+  match '/auth/:provider/callback' => 'authentications#create'
 
   get "home/index"
 
