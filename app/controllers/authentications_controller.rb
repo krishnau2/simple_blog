@@ -1,9 +1,11 @@
 class AuthenticationsController < ApplicationController
   def index
+    @page_title = "User's List"
+    @users = User.all
   end
 
   def create
-    auth      = request.env["omniauth.auth"]
+    auth          = request.env["omniauth.auth"]
     @name         = auth['user_info']['name']
     @uid          = auth['uid']
     provider      = auth['provider']
@@ -17,18 +19,14 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "New user #{@name} Signed in Successfully"
       redirect_to "/posts"
     end
-    #    if @authentication
-    #      flash[:notice] = "Signed in Successfully."
-    #      sign_in_and_redirect(:user, authentication.user)
-    #    else
-    #      @current_user = Authentication.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
-    #      flash[:notice] = "Authentication successful."
-    #      redirect_to authentications_url
-    #    end
 
   end
 
   def destroy
+  end
+
+  def edit
+    
   end
 
 end
