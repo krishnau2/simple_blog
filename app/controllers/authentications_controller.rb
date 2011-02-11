@@ -12,8 +12,9 @@ class AuthenticationsController < ApplicationController
 
     existing_user = User.find_by_uid(@uid)
     if existing_user
+      session[:current_user] = @name
       flash[:notice] = "Old user #{@name} Signed in Successfully"
-      redirect_to "/posts"
+      redirect_to "/users"
     else
       new_user       = User.create(:name => @name, :category => "general", :provider => provider, :uid => @uid)
       flash[:notice] = "New user #{@name} Signed in Successfully"
