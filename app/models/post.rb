@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   validates :name, :presence => true
   validates :topic, :presence => true
 
+  belongs_to :users
   has_many :comments
   has_attached_file :attachment
 

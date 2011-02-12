@@ -4,6 +4,6 @@ class ChangePostTableNameField < ActiveRecord::Migration
   end
 
   def self.down
-    rename_column :posts, :name, :name_id
+    rename_column :posts, :name_id, :name
   end
 end
