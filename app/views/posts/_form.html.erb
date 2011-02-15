@@ -1,33 +1,36 @@
 <%= form_for(@post, :html => {:multipart => true}) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% # find the currently logged in user id from user table   %>
+    <% user_id = User.find_by_name(session[:current_user]).id %>
+    <div class="field">
+      <%= f.hidden_field :name_id, :value => user_id %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name_id %><br />
-    <%= f.text_field :name_id %>
-  </div>
-  <div class="field">
-    <%= f.label :topic %><br />
-    <%= f.text_field :topic %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div>
-    <%= f.label :Attachment %><br />
-    <%= f.file_field :attachment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :topic %>
+      <br/>
+      <%= f.text_field :topic %>
+    </div>
+    <div class="field">
+      <%= f.label :content %>
+      <br/>
+      <%= f.text_area :content %>
+    </div>
+    <div>
+      <%= f.label :Attachment %>
+      <br/>
+      <%= f.file_field :attachment %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

@@ -4,18 +4,19 @@ class PostsController < ApplicationController
   def index
     unless session[:current_user] == ""
       session[:login_status] = "loggedIn"
-      current_user_name  = session[:current_user]
-      @page_title        = "#{current_user_name}'s Posts"
-      list_posts         = Post.new
-      @current_user_id = User.find_by_name(current_user_name)
+      current_user_name      = session[:current_user]
+      @page_title            = "#{current_user_name}'s Posts"
+      list_posts             = Post.new
+      @current_user_id       = User.find_by_name(current_user_name)
       #collecting current logged in user posts.
-      @posts = list_posts.get_current_user_post(@current_user_id)
+      @posts                 = list_posts.get_current_user_post(@current_user_id)
     else
       session[:login_status] = "loggedOut"
-      @page_title = "WACS - Blog"
-      @posts      = Post.order("created_at DESC")
+      @page_title            = "WACS - Blog"
+      @posts                 = Post.order("created_at DESC")
     end
 
+#    empty object for User model class. for calling the get_user_name(user_id) function in the view.
     @user_name = User.new
 
     respond_to do |format|
@@ -55,9 +56,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-    @post = Post.new(params[:post])
-
-    respond_to do |format|
+#    @post = Post.new(params[:post])
+    @post = Post.new()
+    @post.
+        respond_to do |format|
       if @post.save
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml { render :xml => @post, :status => :created, :location => @post }

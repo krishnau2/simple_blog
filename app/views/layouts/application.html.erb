@@ -19,11 +19,11 @@
     function logout() {
         FB.logout(function(response) {
             alert("You have logged Out successfully.")
-            window.location.href = "/home";
+            window.location.href = "/logout";
         });
     }
 </script>
-<a href="#" onclick="logout()">Logout</a><br/>
+<%= link_to 'Logout','#',:onclick => 'logout()' %>
 <%= flash[:notice] %>
 <%= yield %>
 

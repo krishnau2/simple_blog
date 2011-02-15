@@ -1,17 +1,14 @@
 RailsCms::Application.routes.draw do
   get "users/index"
 
-  root :to => "home#index"
   resources :authentications
-  match '/auth/:provider/callback' => 'authentications#create'
-  match '/logout' => 'authentications#destroy'
 
 #  get "authentications/index"
 #
 #  get "authentications/create"
 #
 #  get "authentications/destroy"
-
+  match '/logout' => 'authentications#logout'
 
   resources :posts do
     resources :comments

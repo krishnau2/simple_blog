@@ -20,7 +20,7 @@
         <td><%= post.topic %></td>
         <td><%= post.content %></td>
         <td><%= link_to 'Show', post %></td>
-        <% if session[:login_status] = "loggedIn" %>
+        <% if session[:login_status] == "loggedIn" %>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>
             <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
         <% end %>
