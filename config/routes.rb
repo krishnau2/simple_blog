@@ -4,12 +4,14 @@ RailsCms::Application.routes.draw do
   root :to => "home#index"
   resources :authentications
   match '/auth/:provider/callback' => 'authentications#create'
+  match '/logout' => 'authentications#destroy'
 
 #  get "authentications/index"
 #
 #  get "authentications/create"
 #
 #  get "authentications/destroy"
+
 
   resources :posts do
     resources :comments

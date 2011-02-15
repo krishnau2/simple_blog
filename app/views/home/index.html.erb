@@ -1,7 +1,39 @@
+<script>
+    function login() {
+        FB.login(function(response) {
+            if (response.session) {
+                // user successfully logged in
+                alert("logged In")
+                get_status();
+                FB.api('/me', function(response) {
+                    document.getElementById('username').value = response.name;
+                    document.myform.submit();
+                });
+            } else {
+                // user cancelled login
+                alert("Error in Loggin")
+            }
+        });
+    }
+    function get_status() {
+        FB.getLoginStatus(function(response) {
+            if (response.session) {
+                // logged in and connected user, someone you know
+                alert("session" + response.session.uid)
+            } else {
+                // no user session available, someone you dont know
+            }
+        });
+    }
+</script>
 <h1>WACS - Web-Enabled Academic Content System</h1>
 <ul>
-  <li><%= link_to "Blog",posts_path %></li>
-  <li><%= link_to 'Login',"/auth/facebook" %></li>
-  <li><%= link_to 'User List',authentications_path %></li>
+  <li><%= link_to "Blog", posts_path %></li>
+  <li><%= link_to 'Login', "#",:onclick => 'login()' %></li>
+  <li><%= link_to 'User List', authentications_path %></li>
   <li>Downloads</li>
 </ul>
+<a href="#" onclick="login()">Login</a><br/>
+<%= form_tag ({:action => "create", :controller => "home" }, :method => :post, :name => "myform") do %>
+    <%= hidden_field_tag 'username'  %>
+<% end %>

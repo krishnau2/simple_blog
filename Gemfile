@@ -8,8 +8,6 @@ gem 'rails', '3.0.3'
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql2'
 gem 'paperclip'
-gem 'devise', '1.1.3'
-gem 'omniauth'
 gem 'nifty-generators', :group => :development
 
 # Use unicorn as the web server
@@ -34,4 +32,3 @@ gem 'nifty-generators', :group => :development
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "mocha", :group => :test
