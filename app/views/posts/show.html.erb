@@ -24,14 +24,11 @@
     </p>
 <% end %>
 
-<h2>New Comments:</h2>
-<%= render "comments/form" %>
-<% @comment_list = @post.comments %>
-<!--For eleminating the last nil value in the array.-->
-<% @comment_list.pop %>
 <h2>Comments</h2>
 <%= render :partial    => "comments/comment",
-           :collection => @comment_list %>
+           :collection => @post.comments %>
 
+<h2>New Comments:</h2>
+<%= render "comments/form" %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

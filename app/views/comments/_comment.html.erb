@@ -1,10 +1,15 @@
 <p>
   <b>Commenter:</b>
-  <%=comment.commenter%>
+  <%= comment.commenter %>
   <b>&nbsp; on &nbsp;</b>
-  <%=comment.created_at %>
+  <%= time_ago_in_words(comment.created_at) %>
 </p>
 <p>
   <b>Comment:</b>
   <%= comment.body %>
+</p>
+<p>
+  <%= link_to 'Destroy Comment', [comment.post, comment],
+              :confirm => 'Are you sure ?',
+              :method  => :delete %>
 </p>
