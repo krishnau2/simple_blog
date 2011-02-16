@@ -17,7 +17,7 @@
   <b>Content:</b>
   <%= @post.content %>
 </p>
-<% if @post.attachment_file_name %>
+<% if @post.attachment_file_name && @post.attachment_file_name != "" %>
     <p>
       <b>Attachments: </b>
       <%= link_to @post.attachment_file_name, @post.attachment.url %>

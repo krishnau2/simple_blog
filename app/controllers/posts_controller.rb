@@ -56,10 +56,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-#    @post = Post.new(params[:post])
-    @post = Post.new()
-    @post.
-        respond_to do |format|
+    @post = Post.new(params[:post])
+    respond_to do |format|
       if @post.save
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml { render :xml => @post, :status => :created, :location => @post }
@@ -96,5 +94,9 @@ class PostsController < ApplicationController
       format.html { redirect_to(posts_url) }
       format.xml { head :ok }
     end
+  end
+
+  def remove
+
   end
 end
