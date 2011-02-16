@@ -74,13 +74,20 @@
     </ul>
   </div>
 </div>
-<%= link_to 'Logout', '#', :onclick => 'logout()' %>
-<%= flash[:notice] %>
-<%= yield %>
+<div id="wrapper">
+  <div id="wrapper-bgtop">
+    <div id="page">
+
+      <%= flash[:notice] %>
+      <%= yield %>
+
+    </div>
+  </div>
+</div>
+
 <div id="footer-bgcontent">
   <div id="footer">
-    <p>Copyright (c) 2008 Sitename.com. All rights reserved. Design by
-      <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+    <p>Copyright &copy; 2011. All rights reserved. Design by</p>
   </div>
 </div>
 </body>

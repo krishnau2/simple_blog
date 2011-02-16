@@ -131,7 +131,8 @@ hr { display: none; }
 }
 
 #menu a:hover { 
-	text-decoration: none; 
+	text-decoration: none;
+    background-color:white;
 }
 
 #menu .current_page_item a {
@@ -185,6 +186,7 @@ hr { display: none; }
 
 #page {
 	width: 940px;
+    height:auto;
 	margin: 0 auto;
 	padding: 30px 20px 10px 20px;
 }

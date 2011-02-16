@@ -1,3 +1,17 @@
+<% @post.each do |post| %>
+    <div class="post">
+      <p class="meta"><%= time_ago_in_words(post.created_at) %> Posted by
+        <a href="#"><%= @user_name.get_user_name(post.name_id) %></a></p>
+
+      <h2 class="title"><a href="#"><%= post.topic %></a></h2>
+
+      <div class="entry">
+        <p><%= post.content %></p>
+
+        <div><%= link_to 'View Full Story', post, :class => "links" %></div>
+      </div>
+<% end %>
+</div>
 <%= form_tag ({:action => "create", :controller => "authentications"}, :method => :post, :name => "myform") do %>
     <%= hidden_field_tag 'username' %>
     <%= hidden_field_tag 'uid' %>
