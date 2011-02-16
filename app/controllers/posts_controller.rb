@@ -95,8 +95,4 @@ class PostsController < ApplicationController
       format.xml { head :ok }
     end
   end
-
-  def remove
-
-  end
 end
