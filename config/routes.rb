@@ -2,6 +2,7 @@ RailsCms::Application.routes.draw do
   get "users/index"
 
   resources :authentications
+  match '/auth/:provider/callback' => 'authentications#create'
 
 #  get "authentications/index"
 #
@@ -13,7 +14,6 @@ RailsCms::Application.routes.draw do
   resources :posts do
     resources :comments
   end
-  resources :uploads
   resources :home
   resources :users
 #  get "home/index"

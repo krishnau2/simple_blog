@@ -1,6 +1,6 @@
 <% @post.each do |post| %>
     <div class="post">
-      <p class="meta"><%= time_ago_in_words(post.created_at) %> Posted by
+      <p class="meta"><%= time_ago_in_words(post.created_at) %> before. Posted by
         <a href="#"><%= @user_name.get_user_name(post.name_id) %></a></p>
 
       <h2 class="title"><a href="#"><%= post.topic %></a></h2>
