@@ -27,7 +27,7 @@ Installing dependent gems.
 
 Creating Database and associated tables.
 
-<code>rake db:migrate</code>
+<code>rake db:create</code>
 
 Running - From the project directory
 
