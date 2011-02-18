@@ -1,29 +1,18 @@
-<%= link_to 'Home', "/" %>
-<h1><%= @current_user %>'s Page</h1>
-
 <table>
   <tr>
-    <th>Date</th>
     <th>Name</th>
-    <th>Topic</th>
-    <th>Content</th>
-    <th></th>
+    <th>Category</th>
     <th></th>
     <th></th>
   </tr>
-      <% @current_user_post.each do |post| %>
-          <tr>
-            <td><%= post.created_at.strftime('%d-%m-%Y') %> </td>
-            <td><%= @user_name.get_user_name(post.name_id)%></td>
-            <td><%= post.topic %></td>
-            <td><%= post.content %></td>
-            <td><%= link_to 'Show', post %></td>
-            <td><%= link_to 'Edit', edit_post_path(post) %></td>
-            <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
-          </tr>
-      <% end %>
+  <% @list_users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.category %></td>
+        <% if session[:current_user_category] == "admin" %>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+        <% end %>
+      </tr>
+  <% end %>
 </table>
-
-<br/>
-
-<%= link_to 'New Post', new_post_path %>

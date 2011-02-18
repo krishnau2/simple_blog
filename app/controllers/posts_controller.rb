@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+
   # GET /posts
   # GET /posts.xml
   def index
-    unless session[:current_user] == ""
+    unless session[:current_user] == "" || session[:current_user_category] == "admin" || session[:current_user_category] == "moderator"
       session[:login_status] = "loggedIn"
       current_user_name      = session[:current_user]
       @page_title            = "#{current_user_name}'s Posts"
@@ -11,9 +12,13 @@ class PostsController < ApplicationController
       #collecting current logged in user posts.
       @posts                 = list_posts.get_current_user_post(@current_user_id)
     else
-      session[:login_status] = "loggedOut"
-      @page_title            = "WACS - Blog"
-      @posts                 = Post.order("created_at DESC")
+      if session[:current_user_category] == "admin" || session[:current_user_category] == "moderator"
+        session[:login_status] = "loggedIn"
+      else
+        session[:login_status] = "loggedOut"
+      end
+      @page_title = "WACS - Blog"
+      @posts      = Post.order("created_at DESC")
     end
 
 #    empty object for User model class. for calling the get_user_name(user_id) function in the view.
@@ -28,6 +33,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @post_creator    = Post.find(params[:id]).name_id
+    @current_user_id = User.find_by_uid(session[:current_user_id]).id
+    
     @post       = Post.find(params[:id])
     @page_title = "Post on #{@post.topic}"
 
@@ -54,7 +62,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    post_creator    = Post.find(params[:id]).name_id
+    current_user_id = User.find_by_uid(session[:current_user_id]).id
+    if  post_creator == current_user_id
+      @post = Post.find(params[:id])
+    else
+      flash[:notice] = "You are not authorised to edit this post"
+      redirect_to '/posts'
+    end
+
   end
 
   # POST /posts
@@ -91,9 +107,16 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.xml
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    post_creator    = Post.find(params[:id]).name_id
+    current_user_id = User.find_by_uid(session[:current_user_id]).id
 
+    if session[:current_user_category] == "admin" || session[:current_user_category] == "moderator" || post_creator == current_user_id
+      @post = Post.find(params[:id])
+      @post.destroy
+    else
+      flash[:notice] = "You are not authorised to delete this post"
+      redirect_to :"/posts"
+    end
     respond_to do |format|
       format.html { redirect_to(posts_url) }
       format.xml { head :ok }

@@ -10,12 +10,14 @@ RailsCms::Application.routes.draw do
 #
 #  get "authentications/logout"
   match '/logout' => 'authentications#logout'
+  match '/posts' => 'posts#index'
 
   resources :posts do
     resources :comments
   end
   resources :home
   resources :users
+
 #  get "home/index"
 
   # The priority is based upon order of creation:

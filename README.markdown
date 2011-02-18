@@ -21,13 +21,18 @@ Getting Started
 
 <code> git clone git@github.com:krishnau2/wacs_rails3.git </code>
 
+Change directory to wacs_rails3
+
+<code>cd wacs_rails3</code>
+
 Installing dependent gems.
 
 <code>bundle install</code>
 
 Creating Database and associated tables.
 
-<code>rake db:create</code>
+<code>rake db:create</code> Then,
+<code>rake db:migrate</code>
 
 Running - From the project directory
 

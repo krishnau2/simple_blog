@@ -20,6 +20,9 @@
       <li><%= link_to "Home", "/home" %></li>
       <li class="current_page_item"><%= link_to "Blog", posts_path %></li>
       <li><a href="#">Contact</a></li>
+      <% if session[:current_user_category] == "admin" %>
+          <li><%= link_to 'Users', '/users' %></li>
+      <% end %>
       <% if session[:login_status] == "loggedIn" %>
           <li><%= link_to 'Logout', '/logout' %></li>
       <% else %>
