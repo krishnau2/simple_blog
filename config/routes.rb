@@ -8,7 +8,7 @@ RailsCms::Application.routes.draw do
 #
 #  get "authentications/create"
 #
-#  get "authentications/destroy"
+#  get "authentications/logout"
   match '/logout' => 'authentications#logout'
 
   resources :posts do
@@ -67,7 +67,7 @@ RailsCms::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "home#index"
+  root :to => "authentications#logout"
 
   # See how all your routes lay out with "rake routes"
 

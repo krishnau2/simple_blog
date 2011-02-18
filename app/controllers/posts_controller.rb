@@ -40,11 +40,15 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
+    if session[:login_status] == "loggedIn"
+      @post = Post.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @post }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml { render :xml => @post }
+      end
+    else
+      redirect_to '/auth/facebook'
     end
   end
 

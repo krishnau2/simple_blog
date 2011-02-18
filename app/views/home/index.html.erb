@@ -1,18 +1,62 @@
-<% @post.each do |post| %>
-    <div class="post">
-      <p class="meta"><%= time_ago_in_words(post.created_at) %> before. Posted by
-        <a href="#"><%= @user_name.get_user_name(post.name_id) %></a></p>
+<h2>Recent Activities</h2>
+<div id="content">
+  <% @post.each do |post| %>
+      <div class="post">
+        <p class="meta"><%= @user_name.get_user_name(post.name_id) %>
+          <%= time_ago_in_words(post.created_at) %> before.</p>
 
-      <h2 class="title"><a href="#"><%= post.topic %></a></h2>
+        <h2 class="title"><%= post.topic %></h2>
 
-      <div class="entry">
-        <p><%= post.content %></p>
-
-        <div><%= link_to 'View Full Story', post, :class => "links" %></div>
+        <div class="entry">
+          <% if post.content.length > 250 %>
+              <p><%= post.content[0..250] %> ...</p>
+          <% else %>
+              <p><%= post.content %></p>
+          <% end %>
+        </div>
+        <div class="full_story"><%= link_to 'View Full Story', post, :class => "links" %></div>
       </div>
-<% end %>
+  <% end %>
 </div>
-<%= form_tag ({:action => "create", :controller => "authentications"}, :method => :post, :name => "myform") do %>
-    <%= hidden_field_tag 'username' %>
-    <%= hidden_field_tag 'uid' %>
-<% end %>
+<div id="sidebar">
+  <ul>
+    <li>
+      <h2>What is WACS</h2>
+
+      <p>An online content sharing platform for technical
+        studies.
+        Response to an immediate real­world problem.
+        Those who can and wish to, does it best. eg:
+        Wikipedia
+        Very small learning curve.
+      </p>
+    </li>
+    <li>
+      <h2>Pellenteque ornare </h2>
+      <ul>
+        <li><a href="#">Nec metus sed donec</a></li>
+        <li><a href="#">Magna lacus bibendum mauris</a></li>
+        <li><a href="#">Velit semper nisi molestie</a></li>
+        <li><a href="#">Eget tempor eget nonummy</a></li>
+        <li><a href="#">Nec metus sed donec</a></li>
+        <li><a href="#">Velit semper nisi molestie</a></li>
+        <li><a href="#">Eget tempor eget nonummy</a></li>
+        <li><a href="#">Nec metus sed donec</a></li>
+      </ul>
+    </li>
+    <li>
+      <h2>Turpis nulla</h2>
+      <ul>
+        <li><a href="#">Nec metus sed donec</a></li>
+        <li><a href="#">Magna lacus bibendum mauris</a></li>
+        <li><a href="#">Velit semper nisi molestie</a></li>
+        <li><a href="#">Eget tempor eget nonummy</a></li>
+        <li><a href="#">Nec metus sed donec</a></li>
+        <li><a href="#">Nec metus sed donec</a></li>
+        <li><a href="#">Magna lacus bibendum mauris</a></li>
+        <li><a href="#">Velit semper nisi molestie</a></li>
+        <li><a href="#">Eget tempor eget nonummy</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
