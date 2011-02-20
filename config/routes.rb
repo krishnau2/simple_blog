@@ -10,7 +10,7 @@ RailsCms::Application.routes.draw do
 #
 #  get "authentications/logout"
   match '/logout' => 'authentications#logout'
-  match '/posts' => 'posts#index'
+#  match '/post' => 'posts#index'
 
   resources :posts do
     resources :comments

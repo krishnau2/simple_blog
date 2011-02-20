@@ -2,7 +2,7 @@
 <div id="content">
   <% @post.each do |post| %>
       <div class="post">
-        <p class="meta"><%= @user_name.get_user_name(post.name_id) %>
+        <p class="meta"><%= @user.get_user_name(post.user_id) %>
           <%= time_ago_in_words(post.created_at) %> before.</p>
 
         <h2 class="title"><%= post.topic %></h2>
