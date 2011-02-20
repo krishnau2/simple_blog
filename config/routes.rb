@@ -17,6 +17,7 @@ RailsCms::Application.routes.draw do
   end
   resources :home
   resources :users
+  match '/users' => 'users#index'
 
 #  get "home/index"
 

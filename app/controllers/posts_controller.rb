@@ -33,9 +33,15 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post_creator    = Post.find(params[:id]).name_id
-    @current_user_id = User.find_by_uid(session[:current_user_id]).id
-    
+#    @show_edit_option = 0
+#    The edit option is shown only if the post is viewed by the creator.
+    unless session[:current_user_id] == ""
+      @post_creator    = Post.find(params[:id]).name_id
+      @current_user_id = User.find_by_uid(session[:current_user_id]).id
+      if @post_creator == @current_user_id
+        @show_edit_option = 1
+      end
+    end
     @post       = Post.find(params[:id])
     @page_title = "Post on #{@post.topic}"
 

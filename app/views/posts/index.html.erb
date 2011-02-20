@@ -16,7 +16,7 @@
         <td><%= post.created_at.strftime('%d-%m-%Y') %> </td>
         <td><%= @user_name.get_user_name(post.name_id) %></td>
         <td><%= post.topic %></td>
-        <td><%= post.content %></td>
+        <td><%= post.content[0..75] %> ...</td>
         <td><%= link_to 'Show', post %></td>
         <% if session[:login_status] == "loggedIn" %>
             <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>

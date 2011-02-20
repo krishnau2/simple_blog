@@ -30,7 +30,7 @@
 
 <h2>New Comments:</h2>
 <%= render "comments/form" %>
-<% if @post_creator == @current_user_id %>
+<% if @show_edit_option %>
     <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 <%= link_to 'Back', posts_path %>

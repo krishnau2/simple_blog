@@ -29,6 +29,7 @@ class AuthenticationsController < ApplicationController
 
   def logout
     session[:current_user] = ""
+    session[:current_user_id] = ""
     session[:login_status] = "loggedOut"
     session[:current_user_category] = ""
     redirect_to "/home"
