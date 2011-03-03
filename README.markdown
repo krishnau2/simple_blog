@@ -1,11 +1,9 @@
-WACS Web-enabled Academic Content System
+Simple Blog
 ========================================
 
 Features
 --------
-1. Having a Bloging section.
-2. Users can login to this using their facebook login parameters.
-3. Files can be uploaded with each blog post
+Simple Blog developed in Ruby On Rails. which have the basic functioalities like commenting , tagging , adding file attachments etc. You can login using facebook login credentials. Administrator and moderator control.
 
 ***This project is under construction.***
 
@@ -19,11 +17,11 @@ Getting Started
 
 ###First step. :- Getting the source code.
 
-<code> git clone git@github.com:krishnau2/wacs_rails3.git </code>
+<code> git clone git@github.com:krishnau2/simple_blog.git </code>
 
-Change directory to wacs_rails3
+Change directory to simple_blog
 
-<code>cd wacs_rails3</code>
+<code>cd simple_blog</code>
 
 Installing dependent gems.
 
