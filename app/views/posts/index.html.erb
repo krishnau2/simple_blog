@@ -14,11 +14,11 @@
   <% @posts.each do |post| %>
       <tr>
         <td><%= post.created_at.strftime('%d-%m-%Y') %> </td>
-        <td><%= @user.get_user_name(post.user_id) %></td>
+        <td><%= post.user.name %></td>
         <td><%= post.topic %></td>
         <td><%= post.content[0..75] %> ...</td>
         <td><%= link_to 'Show', post %></td>
-        <% if session[:login_status] == "loggedIn" %>
+        <% if post.can_be_edited_by?(current_user) %>
             <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
         <% end %>
       </tr>

@@ -3,7 +3,7 @@ Simple Blog
 
 Features
 --------
-Simple Blog developed in Ruby On Rails. which have the basic functioalities like commenting , tagging , adding file attachments etc. You can login using facebook login credentials. Administrator and moderator control.
+Simple Blog developed in Ruby On Rails. which have the basic functionalities like commenting , tagging , adding file attachments etc. You can login using facebook login credentials. Administrator and moderator control.
 
 ***This project is under construction.***
 

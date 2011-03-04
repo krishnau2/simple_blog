@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :current_user, :logged_in?
 
-  def authenticate
-    if session[:current_user_category] == "admin"
-      return true
-    else
-      return false
-    end
+private
+  def current_user
+    session[:current_user]
   end
+
+  def logged_in?
+    not current_user.blank?
+  end
+
 end

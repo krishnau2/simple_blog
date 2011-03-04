@@ -5,30 +5,23 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-#    collecting the authenticated user-details returned by  facebook.
     facebook_result           = request.env["omniauth.auth"]
 
-    @name                     = facebook_result['user_info']['name']
-    uid                       = facebook_result['uid']
-    provider                  = facebook_result['provider']
-#    storing loggedIn user details in session variables for logIn session management
-    session[:current_user]    = @name
-    session[:current_user_id] = uid
+    uid = facebook_result['uid']
 
-    existing_user             = User.find_by_uid(uid)
-    if existing_user
-      flash[:notice]                  = "Old user #{@name} Signed in Successfully"
-#      Storing the loggedIn user category for identifying and managing  user-roles.
-      session[:current_user_category] = existing_user.category
-      redirect_to "/posts"
+    user = User.find_by_uid(uid)
+    if user
+      flash[:notice]                  = "#{@name} signed in successfully!"
     else
-#      For a new user the user_category will be general
-      new_user                        = User.create(:name => @name, :category => "general", :provider => provider, :uid => uid)
-      session[:current_user_category] = "general"
-      flash[:notice]                  = "New user #{@name} Signed in Successfully"
-      redirect_to "/posts"
+      user = User.create(:name => facebook_result['user_info']['name'],
+                         :category => "general",
+                         :provider => facebook_result['provider'],
+                         :uid => uid)
+      flash[:notice]                  = "New user #{@name} signed up and signed in successfully!"
     end
 
+    session[:current_user]    = user
+    redirect_to "/posts"
   end
 
   def logout

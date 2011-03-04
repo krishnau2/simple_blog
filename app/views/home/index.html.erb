@@ -2,17 +2,13 @@
 <div id="content">
   <% @post.each do |post| %>
       <div class="post">
-        <p class="meta"><%= @user.get_user_name(post.user_id) %>
+        <p class="meta"><%= post.user.name %>
           <%= time_ago_in_words(post.created_at) %> before.</p>
 
         <h2 class="title"><%= post.topic %></h2>
 
         <div class="entry">
-          <% if post.content.length > 250 %>
-              <p><%= post.content[0..250] %> ...</p>
-          <% else %>
-              <p><%= post.content %></p>
-          <% end %>
+              <p><%= truncate(post.content, :length => 250, :omission => "...") %></p>
         </div>
         <div class="full_story"><%= link_to 'View Full Story', post, :class => "links" %></div>
       </div>
