@@ -4,13 +4,7 @@ RailsCms::Application.routes.draw do
   resources :authentications
   match '/auth/:provider/callback' => 'authentications#create'
 
-#  get "authentications/index"
-#
-#  get "authentications/create"
-#
-#  get "authentications/logout"
   match '/logout' => 'authentications#logout'
-#  match '/post' => 'posts#index'
 
   resources :posts do
     resources :comments

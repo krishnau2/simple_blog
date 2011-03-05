@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
 
-  # GET /posts
-  # GET /posts.xml
   def index
 
     if logged_in?
@@ -18,19 +16,9 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1
-  # GET /posts/1.xml
   def show
-#    @show_edit_option = 0
-#    The edit option is shown only if the post is viewed by the creator.
-    unless session[:current_user_id] == ""
-      @post_creator = Post.find(params[:id]).user_id
-      @current_user_id = User.find_by_uid(session[:current_user_id]).id
-      if @post_creator == @current_user_id
-        @show_edit_option = 1
-      end
-    end
     @post = Post.find(params[:id])
+    @editable = (@post.user_id == current_user.id) if logged_in?
     @page_title = "Post on #{@post.topic}"
 
     respond_to do |format|
@@ -39,10 +27,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.xml
   def new
-    if session[:login_status] == "loggedIn"
+    if logged_in?
       @post = Post.new
 
       respond_to do |format|
@@ -54,11 +40,9 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
   def edit
-    post_creator = Post.find(params[:id]).user_id
-    current_user_id = User.find_by_uid(session[:current_user_id]).id
-    if  post_creator == current_user_id
+    post = Post.find(params[:id])
+    if  post.user_id == current_user.id
       @post = Post.find(params[:id])
     else
       flash[:notice] = "You are not authorised to edit this post"
@@ -67,8 +51,6 @@ class PostsController < ApplicationController
 
   end
 
-  # POST /posts
-  # POST /posts.xml
   def create
     @post = Post.new(params[:post])
     respond_to do |format|
@@ -82,8 +64,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.xml
   def update
     @post = Post.find(params[:id])
 
@@ -98,8 +78,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
 

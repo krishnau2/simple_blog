@@ -16,14 +16,15 @@
   <hr/>
   <!-- end #logo -->
   <div id="menu">
+
     <ul>
       <li><%= link_to "Home", "/home" %></li>
       <li class="current_page_item"><%= link_to "Blog", posts_path %></li>
       <li><a href="#">Contact</a></li>
-      <% if session[:current_user_category] == "admin" %>
+      <% if logged_in? && current_user.is_admin? %>
           <li><%= link_to 'Users', '/users' %></li>
       <% end %>
-      <% if session[:login_status] == "loggedIn" %>
+      <% if logged_in? %>
           <li><%= link_to 'Logout', '/logout' %></li>
       <% else %>
           <li> <%= link_to 'Login', "/auth/facebook" %></li>

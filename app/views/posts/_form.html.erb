@@ -10,9 +10,9 @@
         </div>
     <% end %>
      <!--find the currently logged in user id from user table         -->
-    <% user_id = User.find_by_uid(session[:current_user_id]).id %>
+    <%# user_id = User.find_by_uid(session[:current_user_id]).id %>
     <div class="field">
-      <%= f.hidden_field :user_id, :value => user_id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
     </div>
     <div class="field">
       <%= f.label :topic %>
