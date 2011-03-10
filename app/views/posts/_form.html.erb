@@ -9,8 +9,6 @@
           </ul>
         </div>
     <% end %>
-     <!--find the currently logged in user id from user table         -->
-    <%# user_id = User.find_by_uid(session[:current_user_id]).id %>
     <div class="field">
       <%= f.hidden_field :user_id, :value => current_user.id %>
     </div>
@@ -36,6 +34,10 @@
       <%= f.label :Attachment %>
       <br/>
       <%= f.file_field :attachment %>
+    </div>
+    <div class="field">
+      <%= label_tag :tags %>
+      <%= text_field_tag :tags %>
     </div>
     <div class="actions">
       <%= f.submit %>

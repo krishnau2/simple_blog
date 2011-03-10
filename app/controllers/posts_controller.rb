@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # kk.html.erb
       format.xml { render :xml => @posts }
     end
   end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @page_title = "Post on #{@post.topic}"
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # kk.html.erb
       format.xml { render :xml => @post }
     end
   end
@@ -52,10 +52,20 @@ class PostsController < ApplicationController
   end
 
   def create
+    tags_from_view = params[:tags]
+    tags_array = tags_from_view.split(/,/)
     @post = Post.new(params[:post])
     respond_to do |format|
       if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
+
+        tags_array.each do |tag|
+          tag_obj = Tag.new
+          tag_obj.name = tag
+          tag_obj.post_id = @post.id
+          tag_obj.save
+        end
+
+        format.html { redirect_to(@post, :notice => "Post was successfully created. tags are #{tags_from_view}") }
         format.xml { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
@@ -65,11 +75,13 @@ class PostsController < ApplicationController
   end
 
   def update
+
     @post = Post.find(params[:id])
+
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
+        format.html { redirect_to(@post, :notice => "Post was successfully updated. tags are #{tags} ") }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }
@@ -92,4 +104,5 @@ class PostsController < ApplicationController
       format.xml { head :ok }
     end
   end
+
 end

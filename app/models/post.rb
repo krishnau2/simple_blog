@@ -3,11 +3,12 @@ class Post < ActiveRecord::Base
   validates :topic, :presence => true
 
   belongs_to :user
-  has_many :comments,:dependent => :destroy
+  has_many :comments, :dependent => :destroy
   has_attached_file :attachment
+  has_many :tags
 
   def can_be_edited_by?(user)
-     not user.blank? and (user.id == user_id or user.is_moderator? or user.is_admin?)
+    not user.blank? and (user.id == user_id or user.is_moderator? or user.is_admin?)
   end
 
   def delete_attachment=(value)

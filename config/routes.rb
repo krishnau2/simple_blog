@@ -1,7 +1,7 @@
 RailsCms::Application.routes.draw do
   get "users/index"
-
   resources :authentications
+
   match '/auth/:provider/callback' => 'authentications#create'
 
   match '/logout' => 'authentications#logout'

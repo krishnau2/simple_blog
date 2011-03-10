@@ -24,6 +24,12 @@
     </p>
 <% end %>
 
+<p>
+  <b>Tags:</b>
+  <% @post.tags.each do |tag| %>
+  <%= link_to tag.name,"/tags/#{tag.name}" %> ,
+  <% end %>
+</p>
 <h2>Comments</h2>
 <%= render :partial    => "comments/comment",
            :collection => @post.comments %>
