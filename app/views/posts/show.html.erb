@@ -27,7 +27,7 @@
 <p>
   <b>Tags:</b>
   <% @post.tags.each do |tag| %>
-  <%= link_to tag.name,"/tags/#{tag.name}" %> ,
+  <%= link_to tag.name, tag_path(tag) %>
   <% end %>
 </p>
 <h2>Comments</h2>

@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 
         tags_array.each do |tag|
           tag_obj = Tag.new
-          tag_obj.name = tag
+          tag_obj.name = tag.downcase.strip
           tag_obj.post_id = @post.id
           tag_obj.save
         end
@@ -81,7 +81,20 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to(@post, :notice => "Post was successfully updated. tags are #{tags} ") }
+
+        @post.tags.destroy_all
+
+        tags_from_view = params[:tags]
+        tags_array = tags_from_view.split(/,/)
+
+        tags_array.each do |tag|
+          tag_obj = Tag.new
+          tag_obj.name = tag.downcase.strip
+          tag_obj.post_id = @post.id
+          tag_obj.save
+        end
+
+        format.html { redirect_to(@post, :notice => "Post was successfully updated. ") }
         format.xml { head :ok }
       else
         format.html { render :action => "edit" }

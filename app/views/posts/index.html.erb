@@ -16,7 +16,7 @@
         <td><%= post.created_at.strftime('%d-%m-%Y') %> </td>
         <td><%= post.user.name %></td>
         <td><%= post.topic %></td>
-        <td><%= post.content[0..75] %> ...</td>
+        <td><%= truncate(post.content, :length => 70, :omission => '...') %></td>
         <td><%= link_to 'Show', post %></td>
         <% if post.can_be_edited_by?(current_user) %>
             <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -1,5 +1,7 @@
 RailsCms::Application.routes.draw do
   get "users/index"
+
+  resources :tags, :only => ["index", "show"]
   resources :authentications
 
   match '/auth/:provider/callback' => 'authentications#create'
@@ -13,7 +15,6 @@ RailsCms::Application.routes.draw do
   resources :users
   match '/users' => 'users#index'
 
-#  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

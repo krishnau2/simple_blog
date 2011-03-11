@@ -7,6 +7,10 @@ class Post < ActiveRecord::Base
   has_attached_file :attachment
   has_many :tags
 
+  def related_tags
+    self.tags.map {|tag| tag.name }.join(", ")
+  end
+
   def can_be_edited_by?(user)
     not user.blank? and (user.id == user_id or user.is_moderator? or user.is_admin?)
   end

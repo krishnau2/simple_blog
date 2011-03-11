@@ -20,7 +20,6 @@
     <ul>
       <li><%= link_to "Home", "/home" %></li>
       <li class="current_page_item"><%= link_to "Blog", posts_path %></li>
-      <li><a href="#">Contact</a></li>
       <% if logged_in? && current_user.is_admin? %>
           <li><%= link_to 'Users', '/users' %></li>
       <% end %>

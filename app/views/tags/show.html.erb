@@ -1,0 +1,7 @@
+<h1><%= @searched_tag %> </h1>         <br/>
+
+<ul>
+  <% @tags.each do |tag| %>
+     <li> <%= link_to tag.post.topic, tag.post %> </li>
+  <% end %>
+</ul>

@@ -1,0 +1,4 @@
+<h3>You have reached Tag List</h3>
+<% @tag_list.each do |tags| %>
+    <%= link_to tags.name, "tags/#{tags.name}" %><br />
+<% end %>
