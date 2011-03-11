@@ -11,7 +11,8 @@ RailsCms::Application.routes.draw do
   resources :posts do
     resources :comments
   end
-  resources :home
+#  resources :home, :only => "index"
+  match '/home' => 'home#index', :as => "home"
   resources :users
   match '/users' => 'users#index'
 

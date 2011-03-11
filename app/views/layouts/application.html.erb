@@ -18,8 +18,9 @@
   <div id="menu">
 
     <ul>
-      <li><%= link_to "Home", "/home" %></li>
+      <li><%= link_to "Home", home_path %></li>
       <li class="current_page_item"><%= link_to "Blog", posts_path %></li>
+      <li><%= link_to "Tags",tags_path %> </li>
       <% if logged_in? && current_user.is_admin? %>
           <li><%= link_to 'Users', '/users' %></li>
       <% end %>
